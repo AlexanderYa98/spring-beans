@@ -1,5 +1,4 @@
 import app.config.AppConfig;
-import app.model.AnimalsCage;
 import app.model.Timer;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,16 +17,15 @@ public class MainTest {
 
     @Test
     public void mainTest() {
-        Timer timer = new Timer();
         long time = 0;
         for (int i = 0; i < 5; i++) {
-            AnimalsCage bean =
-                    applicationContext.getBean(AnimalsCage.class);
+            Timer bean =
+                    (Timer) applicationContext.getBean("timer");
             if (i == 0) {
-                time = timer.getTime();
+                time = bean.getTime();
                 continue;
             }
-            Assert.assertEquals("Тест провален, не корректная реализация бинов.", time, timer.getTime().longValue());
+            Assert.assertEquals("Тест провален, не корректная реализация бинов.", time, bean.getTime().longValue());
             System.out.println(time);
         }
     }
